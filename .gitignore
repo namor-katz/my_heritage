@@ -12,5 +12,5 @@ tmp/
 __pycache__/
 *.DS_Store
 .idea/
-.sqlite3
+*.sqlite3
 *.e4p
