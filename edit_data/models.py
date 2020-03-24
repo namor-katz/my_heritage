@@ -8,15 +8,18 @@ class Sex(models.TextChoices):
     Man = "M", _("Male")
     Women = "F", _("Female")
 
+class Sex2(Enum):
+    M = "Male"
+    W = "Female"
 
 class Day(models.TextChoices):
-    M = "M",  _("Monday")
-    T = "T",  _("Tuesday")
-    W = "W",  _("Wednesday")
-    TU = "TU",  _("Thursday")
-    F = "F",  _("Friday")
-    S = "S",  _("Saturday")
-    SU = "SU",  _("Sunday")
+    M = "M",  _("Montag")
+    T = "T",  _("Dienstag")
+    W = "W",  _("Mittwoch")
+    TU = "TU",  _("Donnerstag")
+    F = "F",  _("Freitag")
+    S = "S",  _("Samstag")
+    SU = "SU",  _("Sonntag")
 
 
 class Role(models.TextChoices):
@@ -25,6 +28,7 @@ class Role(models.TextChoices):
     Mutter = "M", _("Mutter")
     Ehemann = "E", _("Ehemann")
     Ehefrau = "F", _("Frau")
+    Kind = "K", _("Kind")
 
 
 class EventType(models.TextChoices):
@@ -67,4 +71,4 @@ class Event(models.Model):
         verbose_name_plural = "события"
 
     def __str__(self):
-        return self.type
+        return self.get_type_display(), self.date
