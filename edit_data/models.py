@@ -47,7 +47,9 @@ class Man(models.Model):
     Sex = models.CharField(max_length=2, choices=Sex.choices)
 
     def __str__(self):
-        return self.Vorname0
+        # print(self.Vorname0, self.Nachname)
+        # return self.Vorname0 + self.Nachname
+        return '{} {}'.format(self.Vorname0, self.Nachname)
 
     class Meta:
         verbose_name = "предок"
@@ -71,4 +73,5 @@ class Event(models.Model):
         verbose_name_plural = "события"
 
     def __str__(self):
-        return self.get_type_display(), self.date
+        return '{} {}'.format(self.get_type_display(), self.date)
+        # return self.get_type_display(),  str(self.date)
