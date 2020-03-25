@@ -40,15 +40,13 @@ class EventType(models.TextChoices):
 
 ## base models class
 class Man(models.Model):
-    Vorname0 = models.CharField(max_length=256)
+    Vorname0 = models.CharField(max_length=256, help_text="имя")
     Vorname1 = models.CharField(max_length=256, null=True, blank=True)
     Vorname2 = models.CharField(max_length=256, null=True, blank=True)
-    Nachname = models.CharField(max_length=256)
+    Nachname = models.CharField(max_length=256, help_text="фамилия")
     Sex = models.CharField(max_length=2, choices=Sex.choices)
 
     def __str__(self):
-        # print(self.Vorname0, self.Nachname)
-        # return self.Vorname0 + self.Nachname
         return '{} {}'.format(self.Vorname0, self.Nachname)
 
     class Meta:
@@ -64,9 +62,10 @@ class Event(models.Model):
     member2 = models.ForeignKey("Man", on_delete=models.PROTECT, related_name="member2", verbose_name="Member2", null=True, blank=True)
     role2 = models.CharField(max_length=1, choices=Role.choices, null=True, blank=True)
     date = models.DateField()
-    type = models.CharField(max_length=2, choices=EventType.choices)
-    day = models.CharField(max_length=2, choices=Day.choices)
-    locations = models.CharField(max_length=256)
+    type = models.CharField(max_length=2, choices=EventType.choices, help_text="тип события. рождение, свадьба и тд")
+    day = models.CharField(max_length=2, choices=Day.choices, help_text="день недели")
+    siedlung = models.CharField(max_length=256, help_text="поселение")
+    land = models.CharField(max_length=256, null=True, blank=True, help_text="земля или округ")
 
     class Meta:
         verbose_name = "событие"
@@ -74,4 +73,3 @@ class Event(models.Model):
 
     def __str__(self):
         return '{} {}'.format(self.get_type_display(), self.date)
-        # return self.get_type_display(),  str(self.date)
